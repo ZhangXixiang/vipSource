@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.boomhope.dao.MacMachineMapper">
+	<resultMap id="BaseResultMap" type="com.boomhope.po.MacMachine">
+		<id column="mac_id" jdbcType="VARCHAR" property="macId"/>
+		<result column="unit_code" jdbcType="VARCHAR" property="unitCode"/>
+		<result column="mac_address" jdbcType="VARCHAR" property="macAddress"/>
+		<result column="ip_address" jdbcType="VARCHAR" property="ipAddress"/>
+		<result column="port" jdbcType="VARCHAR" property="port"/>
+		<result column="status" jdbcType="VARCHAR" property="status"/>
+		<result column="create_date" jdbcType="VARCHAR" property="createDate"/>
+		<result column="creater" jdbcType="VARCHAR" property="creater"/>
+	</resultMap>
+	<!-- 查询方法 -->
+	<select id="findMacMachineList" parameterType="java.util.Map" resultMap="BaseResultMap">
+		SELECT MAC_ID,UNIT_CODE,MAC_ADDRESS,IP_ADDRESS,PORT,STATUS,CREATE_DATE,CREATER FROM MAC_MACHINE
+		<where>
+			<if test="unitCode != NULL and unitCode != ''"> UNIT_CODE LIKE CONCAT('%',CONCAT(#{unitCode},'%'))
+			</if>
+		</where>
+	</select>
+	<!-- 根据mac_address 查询 -->
+	<select id="selectByMacAddress" parameterType="java.lang.String" resultMap="BaseResultMap"> 
+	SELECT MAC_ID,UNIT_CODE,MAC_ADDRESS,IP_ADDRESS,PORT,STATUS,CREATE_DATE,CREATER FROM MAC_MACHINE 
+	where mac_address = #{macAddress,jdbcType=VARCHAR}
+	</select>
+	
+	<!-- 插入数据 -->
+	<insert id="insert" parameterType="com.boomhope.po.MacMachine">
+		 insert into mac_machine (mac_id, unit_code, create_date, creater, mac_address, ip_address, port,status) 
+		 values (#{macId,jdbcType=VARCHAR}, #{unitCode,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{creater,jdbcType=VARCHAR}, 
+		 #{macAddress,jdbcType=VARCHAR}, #{ipAddress,jdbcType=VARCHAR}, #{port,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR})
+	</insert>
+	<!-- 更新mac_machine -->
+	<update id="updateByPrimaryKey" parameterType="com.boomhope.po.MacMachine"> 
+	update mac_machine set unit_code = #{unitCode,jdbcType=VARCHAR}, create_date = #{createDate,jdbcType=TIMESTAMP}, 
+	creater = #{creater,jdbcType=VARCHAR}, mac_address = #{macAddress,jdbcType=VARCHAR}, 
+	ip_address = #{ipAddress,jdbcType=VARCHAR}, port = #{port,jdbcType=VARCHAR} , status = #{status,jdbcType=VARCHAR} 
+	where mac_id = #{macId,jdbcType=VARCHAR}
+	</update>
+	
+	
+	<delete id="deleteByPrimaryKey" parameterType="java.util.List">
+		delete from mac_machine
+		<where>
+			mac_id in
+			<foreach collection="ids" item="item" index="index" open="(" separator="," close=")">#{item}</foreach>
+		</where>
+	</delete>
+
+	<select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap"> select mac_id, img_id, create_date, creater, mac_brand, mac_model, remark from mac_machine where mac_id = #{macId,jdbcType=VARCHAR}
+	</select>
+	<select id="selectAll" resultMap="BaseResultMap"> select mac_id, img_id, create_date, creater, mac_brand, mac_model, remark from mac_machine
+	</select>
+	<select id="selectByMacModelList" parameterType="java.lang.String" resultMap="BaseResultMap"> select mac_id, img_id, create_date, creater,mac_brand, mac_model,remark from mac_machine where mac_model = #{mac_model,jdbcType=VARCHAR}
+	</select>
+	<!-- 取出所有的设备型号 -->
+	<select id="selectMacModel" resultType="java.lang.String"> select mac_model from mac_machine
+	</select>
+</mapper>

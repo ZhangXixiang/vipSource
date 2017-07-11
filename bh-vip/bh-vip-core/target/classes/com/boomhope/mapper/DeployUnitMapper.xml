@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.boomhope.dao.DeployUnitMapper" >
+  <resultMap id="BaseResultMap" type="com.boomhope.po.DeployUnit" >
+    <id column="UNIT_CODE" property="unitCode" jdbcType="VARCHAR" />
+    <result column="UNIT_NAME" property="unitName" jdbcType="VARCHAR" />
+    <result column="UNIT_TEL" property="unitTel" jdbcType="VARCHAR" />
+    <result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+    <result column="MANAGER" property="manager" jdbcType="VARCHAR" />
+    <result column="EMAIL" property="email" jdbcType="VARCHAR" />
+    <result column="PHONE" property="phone" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="PARENT_CODE" property="parentCode" jdbcType="VARCHAR" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="VARCHAR" />
+    <result column="CREATER" property="creater" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    UNIT_CODE, UNIT_NAME, UNIT_TEL, ADDRESS, MANAGER, EMAIL, PHONE, STATUS, PARENT_CODE, 
+    CREATE_DATE, CREATER
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from VIP.DEPLOY_UNIT
+    where UNIT_CODE = #{unitCode,jdbcType=VARCHAR}
+  </select>
+  
+    <select id="findBusinessManagentList" parameterType="java.util.Map"
+	resultMap="BaseResultMap">
+	select 
+    <include refid="Base_Column_List" />
+    from VIP.DEPLOY_UNIT
+    <where>
+			<if test="unitCode != null">
+				UNIT_CODE LIKE CONCAT('%',CONCAT(#{unitCode},'%'))
+			</if>
+			<if test="unitName != null">
+				or UNIT_NAME LIKE CONCAT('%',CONCAT(#{unitName},'%'))
+			</if>
+		</where>
+	</select>
+  <delete id="deleteByPrimaryKey" parameterType="java.util.List" >
+    delete from DEPLOY_UNIT
+    <where>
+			UNIT_CODE in
+			<foreach collection="list" item="item" index="index" open="("
+				separator="," close=")">#{item}
+			</foreach>
+		</where>
+  </delete>
+  <insert id="insert" parameterType="com.boomhope.po.DeployUnit" >
+    insert into VIP.DEPLOY_UNIT (UNIT_CODE, UNIT_NAME, UNIT_TEL, 
+      ADDRESS, MANAGER, EMAIL, 
+      PHONE, STATUS, PARENT_CODE, 
+      CREATE_DATE, CREATER)
+    values (#{unitCode,jdbcType=VARCHAR}, #{unitName,jdbcType=VARCHAR}, #{unitTel,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{manager,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{parentCode,jdbcType=VARCHAR}, 
+      #{createDate,jdbcType=VARCHAR}, #{creater,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.boomhope.po.DeployUnit" >
+    insert into VIP.DEPLOY_UNIT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="unitCode != null" >
+        UNIT_CODE,
+      </if>
+      <if test="unitName != null" >
+        UNIT_NAME,
+      </if>
+      <if test="unitTel != null" >
+        UNIT_TEL,
+      </if>
+      <if test="address != null" >
+        ADDRESS,
+      </if>
+      <if test="manager != null" >
+        MANAGER,
+      </if>
+      <if test="email != null" >
+        EMAIL,
+      </if>
+      <if test="phone != null" >
+        PHONE,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="parentCode != null" >
+        PARENT_CODE,
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE,
+      </if>
+      <if test="creater != null" >
+        CREATER,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="unitCode != null" >
+        #{unitCode,jdbcType=VARCHAR},
+      </if>
+      <if test="unitName != null" >
+        #{unitName,jdbcType=VARCHAR},
+      </if>
+      <if test="unitTel != null" >
+        #{unitTel,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="manager != null" >
+        #{manager,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="parentCode != null" >
+        #{parentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=VARCHAR},
+      </if>
+      <if test="creater != null" >
+        #{creater,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.boomhope.po.DeployUnit" >
+    update VIP.DEPLOY_UNIT
+    <set >
+      <if test="unitName != null" >
+        UNIT_NAME = #{unitName,jdbcType=VARCHAR},
+      </if>
+      <if test="unitTel != null" >
+        UNIT_TEL = #{unitTel,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        ADDRESS = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="manager != null" >
+        MANAGER = #{manager,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        PHONE = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="parentCode != null" >
+        PARENT_CODE = #{parentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE = #{createDate,jdbcType=VARCHAR},
+      </if>
+      <if test="creater != null" >
+        CREATER = #{creater,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where UNIT_CODE = #{unitCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.boomhope.po.DeployUnit" >
+    update VIP.DEPLOY_UNIT
+    set UNIT_NAME = #{unitName,jdbcType=VARCHAR},
+      UNIT_TEL = #{unitTel,jdbcType=VARCHAR},
+      ADDRESS = #{address,jdbcType=VARCHAR},
+      MANAGER = #{manager,jdbcType=VARCHAR},
+      EMAIL = #{email,jdbcType=VARCHAR},
+      PHONE = #{phone,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
+      PARENT_CODE = #{parentCode,jdbcType=VARCHAR},
+      CREATE_DATE = #{createDate,jdbcType=VARCHAR},
+      CREATER = #{creater,jdbcType=VARCHAR}
+    where UNIT_CODE = #{unitCode,jdbcType=VARCHAR}
+  </update>
+  <!-- 添加角色菜单 -->
+  <insert id="importInsert" parameterType="list">
+    insert into VIP.DEPLOY_UNIT (UNIT_CODE, UNIT_NAME, UNIT_TEL, 
+      ADDRESS, MANAGER, EMAIL, 
+      PHONE, STATUS, PARENT_CODE, 
+      CREATE_DATE, CREATER)
+    <foreach collection="list" item="item" separator="UNION ALL">
+	SELECT
+	#{item.unitCode,jdbcType=VARCHAR}, #{item.unitName,jdbcType=VARCHAR},
+	#{item.unitTel,jdbcType=VARCHAR},#{item.address,jdbcType=VARCHAR},
+	#{item.manager,jdbcType=VARCHAR},#{item.email,jdbcType=VARCHAR},
+	#{item.phone,jdbcType=VARCHAR},#{item.status,jdbcType=VARCHAR},
+	#{item.parentCode,jdbcType=VARCHAR},#{item.createDate,jdbcType=VARCHAR},
+	#{item.creater,jdbcType=VARCHAR} from dual
+	</foreach>
+  </insert>
+</mapper>

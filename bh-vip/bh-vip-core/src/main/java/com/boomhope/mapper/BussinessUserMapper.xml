@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.boomhope.dao.BussinessUserMapper" >
+  <resultMap id="BaseResultMap" type="com.boomhope.po.BussinessUser" >
+    <id column="USER_CODE" property="userCode" jdbcType="VARCHAR" />
+    <result column="UNIT_CODE" property="unitCode" jdbcType="VARCHAR" />
+    <result column="USER_NAME" property="userName" jdbcType="VARCHAR" />
+    <result column="LOGIN_NAME" property="loginName" jdbcType="VARCHAR" />
+    <result column="CREDIT_ID" property="creditId" jdbcType="VARCHAR" />
+    <result column="SEX" property="sex" jdbcType="VARCHAR" />
+    <result column="PHONE" property="phone" jdbcType="VARCHAR" />
+    <result column="TELEPHONE" property="telephone" jdbcType="VARCHAR" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="VARCHAR" />
+    <result column="CREATER" property="creater" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    USER_CODE, UNIT_CODE, USER_NAME, LOGIN_NAME, CREDIT_ID, SEX, PHONE, TELEPHONE, CREATE_DATE, 
+    CREATER, STATUS
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from VIP.BUSSINESS_USER
+    where USER_CODE = #{userCode,jdbcType=VARCHAR}
+  </select>
+  <!-- 营业厅管理/营业厅员工管理 查询方法 -->
+  <select id="slectAll" parameterType="java.util.Map" resultType="com.boomhope.po.BussinessUserExtend">
+      select bu.user_code userCode,bu.unit_code unitCode,bu.user_name userName,bu.login_name loginName,bu.credit_id creditId,
+      bu.sex,bu.phone,bu.telephone,bu.create_date createDate,bu.creater,bu.status,du.unit_name unitName
+      from bussiness_user bu left join deploy_unit du on bu.unit_code=du.unit_code
+      	<where>
+      	  <if test="creditId != NULL and creditId != ''">
+              bu.credit_id like concat('%',concat(#{creditId},'%'))
+          </if>
+          <if test="userName != NULL and userName != ''">
+              and bu.user_name like concat('%',concat(#{userName},'%'))
+          </if>
+          <if test="unitCode != NULL and unitCode != ''">
+              and bu.unit_code like concat('%',concat(#{unitCode},'%'))
+          </if>
+         </where>
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.util.List" >
+    DELETE FROM BUSSINESS_USER
+	    <where>
+	        USER_CODE IN
+	        <foreach collection="list" item="item" index="index" open="(" separator="," close=")">#{item}</foreach>
+	    </where>
+    </delete>
+  <update id="enableBan" parameterType="com.boomhope.po.BussinessUser">
+      update VIP.BUSSINESS_USER
+    set STATUS = #{status,jdbcType=VARCHAR}
+    where USER_CODE = #{userCode,jdbcType=VARCHAR}
+  </update>
+  <insert id="insert" parameterType="com.boomhope.po.BussinessUser" >
+    insert into VIP.BUSSINESS_USER (USER_CODE, UNIT_CODE, USER_NAME, 
+      LOGIN_NAME, CREDIT_ID, SEX, 
+      PHONE, TELEPHONE, CREATE_DATE, 
+      CREATER, STATUS)
+    values (#{userCode,jdbcType=VARCHAR}, #{unitCode,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, 
+      #{loginName,jdbcType=VARCHAR}, #{creditId,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}, #{createDate,jdbcType=VARCHAR}, 
+      #{creater,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.boomhope.po.BussinessUser" >
+    insert into VIP.BUSSINESS_USER
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userCode != null" >
+        USER_CODE,
+      </if>
+      <if test="unitCode != null" >
+        UNIT_CODE,
+      </if>
+      <if test="userName != null" >
+        USER_NAME,
+      </if>
+      <if test="loginName != null" >
+        LOGIN_NAME,
+      </if>
+      <if test="creditId != null" >
+        CREDIT_ID,
+      </if>
+      <if test="sex != null" >
+        SEX,
+      </if>
+      <if test="phone != null" >
+        PHONE,
+      </if>
+      <if test="telephone != null" >
+        TELEPHONE,
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE,
+      </if>
+      <if test="creater != null" >
+        CREATER,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userCode != null" >
+        #{userCode,jdbcType=VARCHAR},
+      </if>
+      <if test="unitCode != null" >
+        #{unitCode,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="loginName != null" >
+        #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="creditId != null" >
+        #{creditId,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null" >
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=VARCHAR},
+      </if>
+      <if test="creater != null" >
+        #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.boomhope.po.BussinessUser" >
+    update VIP.BUSSINESS_USER
+    <set >
+      <if test="unitCode != null" >
+        UNIT_CODE = #{unitCode,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        USER_NAME = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="loginName != null" >
+        LOGIN_NAME = #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="creditId != null" >
+        CREDIT_ID = #{creditId,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        SEX = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        PHONE = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null" >
+        TELEPHONE = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE = #{createDate,jdbcType=VARCHAR},
+      </if>
+      <if test="creater != null" >
+        CREATER = #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where USER_CODE = #{userCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.boomhope.po.BussinessUser" >
+    update VIP.BUSSINESS_USER
+    set UNIT_CODE = #{unitCode,jdbcType=VARCHAR},
+      USER_NAME = #{userName,jdbcType=VARCHAR},
+      LOGIN_NAME = #{loginName,jdbcType=VARCHAR},
+      CREDIT_ID = #{creditId,jdbcType=VARCHAR},
+      SEX = #{sex,jdbcType=VARCHAR},
+      PHONE = #{phone,jdbcType=VARCHAR},
+      TELEPHONE = #{telephone,jdbcType=VARCHAR},
+      CREATE_DATE = #{createDate,jdbcType=VARCHAR},
+      CREATER = #{creater,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR}
+    where USER_CODE = #{userCode,jdbcType=VARCHAR}
+  </update>
+</mapper>

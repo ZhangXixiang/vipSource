@@ -1,0 +1,95 @@
+/*棣栭〉澶撮儴鏍峰紡*/
+.Top_Ico,.common_menu{height:80px;background-color: #1d8bd8;font-size: 15px;color: #fff;text-align: center;}
+.common_menu{position: relative;}
+
+.Top_Ico{padding: 20px;}
+.Top_IcoX{height: 100%;width: 100%;}
+.common_menu{background: #1d8bd8;font-size: 14px;color:#a4cceb;}
+.rowsCenter{width: 90%;height: 100%;margin: 0 auto;padding-left: 60px;}
+.rowsCenter div{float: left; width: 122px;height:80px;position: relative;color: #fff;}
+.rowsCenter div p{width: 26px;height: 26px;margin: 15px 0 0 47px;}
+.rowsCenter .userManagementIco,.common_menu .rightOutIco{background-image:url(../../images/common/CSS_Wizard.png);}
+.rowsCenter div:hover{color: #fff;cursor: pointer;}
+/*閫�嚭鎸夐挳*/
+.rightOut{width: 62px;position: absolute;right: 22px;top:0px;height: 80px;vertical-align: middle;line-height:80px;color: #fff;}
+.rightOutIco{width: 26px;height: 26px;display: inline-block; background-position-x: -197px;position: absolute;left: -12px;top: 24px;}
+.cursor{cursor: pointer;}
+.activea{background: #1075bb;}
+.popUp{margin-left: -10px;}
+.pupUpActive{color: #228ade;}
+.Mymodal{width: 364px;left: 20%;top: 207px;}
+.modalHeaderTop{height: 30px;background: #4F81BD;}
+.modalHeaderTopI{line-height: 30px;color: #fff;}
+.modalHeaderButtom{height: 40px;background: #e5e5e5;}
+.modalBtn{margin-top: -14px;width: 76px}
+.fontColor{color: #000;}
+/*涓汉淇℃伅  */
+.personalInfor{font-size:14px;padding-left: 24px;line-height:35px;background:#ff6600;color:#fff;font-weight: bold;}
+.personalInfor i{display:inline-block;width:25px;height:25px;margin:5px 6px 0 8px;vertical-align: top;background:url(../../images/common/biaoti_ico.png) no-repeat;background-size:100% 100%;}
+.disaccord{position:absolute;font-size:13px;color:red;left: 142px;bottom: -1px;display:none;}
+/*棣栭〉鍐呭閮ㄥ垎*/
+.contentLeftB{border-right: 1px solid #d2d2d2;}
+.munLeft_LineHeight div{line-height: 40px;color: #a19e9e;}
+.munLeft_LineHeight  .leftHeading{background: #003667;color: #fff;}
+.munLeft_LineHeight .leftHeaName{padding-left: 15px;font-size: 14px;}
+.contentHeader{margin-top: 10px;}
+.polling{margin:10px 0;}
+.inputName{display: inline-block;width: 174px;height: 32px;}
+.disBlock{display: inline-block;margin-right: 5px;font-size: 14px;}
+.btn_primary{display: inline-block;width: 84px;    height: 32px;}
+.verticalAlign{margin-top: -24px;vertical-align: middle;}
+/*部署管理机构维护页面元素样式*/
+.institutional_parentUnit{padding-left:0;height:32px;line-height:26px;}
+/*!人脸识别-识别日志样式*/
+.identificationLog_input{width:200px;}
+.identificationLog_polling{margin-bottom:0;}
+.identificationLog_span{height:34px;line-height:34px;}
+/*琛ㄦ牸閮ㄥ垎鏍峰紡----浠ュ悗浼氬垹闄ら儴鍒*/
+#TableContent{width: 100%;font-size: 14px;margin-top: 20px;}
+#TableContent tr td{border: 1px solid #d2d2d2;text-align: center;height: 30px;}
+#TableContent tr td a{display: inline-block;margin:0 6px}
+/*浜鸿劯璇嗗埆鏍峰紡*/
+.faceRecognition{height:calc(100% - 110px);}
+.faceRecognition .title{padding:15px 0;}
+.faceRecognition .title span{display:inline-block;height:34px;line-height:34px;}
+.faceRecognition .title input{display:inline-block;width:200px;}
+.faceRecognition .title button{margin-left:30px;}
+.faceContent{border:1px solid #aaa;border-radius: 5px;padding:20px;height:100%;}
+.faceContent .left{padding-top:2.4em;}
+.faceContent .right{border:1px solid #aaa;border-radius: 5px;max-height:380px;height:380px;padding:20px 15px;overflow-y:auto;}
+.faceContent img{display:inline-block;width:100%;}
+.faceContent .text_common{margin-top:10px;}
+.faceContent .right_img_common{margin-top:15px;}
+#videoFrame,#hitImage{height:276px;}
+.right_img_common img{height:108px;}
+/* .facePosition{position: relative;}*/
+.faceSemblance{margin-top: 20%;color:#00FF00;font-size: 13px;} 
+
+/*璇嗗埆鏃ュ織鏍峰紡*/
+.hitDetail img{display:inline-block;width:100%;}
+.hitDetail .addMymodal{top:50px;}
+.hitDetail .text_common{margin-top:10px;}
+.hitDetail .hitDetail_inpt_common{padding:0;line-height:34px;margin-top:15px;}
+/*閬僵灞傛牱寮*/
+.maskLayer{width:100%;height:100%;position: absolute;left: 0;top: 0;opacity: 0.4;z-index: 1066;background: #000000;}
+.publicPopups{width: 320px;height: 220px;position: absolute;left: 50%;top: 50%;margin-left: -160px;margin-top: -110px;background: #fff;z-index: 9999;}
+.publicPopups .popups{width: 100%;height: 40px;background: #4F81BD;}
+.publicPopups span{display: inline-block;line-height: 40px;}
+.popups span:nth-child(1){float: left;margin-left: 12px;}
+.popups span:nth-child(2){float: right;margin-right: 12px;font-size: 20px;}
+.popupsInfor p{line-height: 40px;text-align: center;margin-top: 46px;}
+.informationTiShi{color: red;display: inline-block;margin-right: 10px;}
+.erroyInformation{font-size: 18px;}
+.popusButton{margin-top:45px}
+.btnWidth{width: 108px;margin:0 auto;}
+
+/*鎽勫儚娴嬭瘯鏍峰紡  */
+.imgPionsition{position: relative;}
+.imgMousedownRight{width:50px;border-radius:4px;line-height:20px;border:1px solid #ccc;font-size:14px;position:absolute;display:none;background:#fff;cursor: pointer;}
+.imgMousedownRight:hover{background-color: #0a9ddd;color: #fff;}
+/*ztree娣诲姞锛屽垹闄わ紝缂栬緫鏍峰紡*/
+#rMenu {position:absolute; visibility:hidden; top:0;z-index:2;text-align: left;border-radius: 6px;box-shadow: 0 0 6px #c1c1c1;border: 1px solid #ccc;overflow: hidden;}
+#rMenu ul li{width:136px;line-height: 40px;border-top: 1px solid #edeeee;padding-left: 12px;cursor: pointer;background-color: #fff;color: #000;}
+#rMenu ul li:hover{background-color: #0a9ddd;color: #fff;}
+#treeDemo{width: 118px;}
+.ztree *{font-size:14px;font-family:'Microsoft YaHei';}

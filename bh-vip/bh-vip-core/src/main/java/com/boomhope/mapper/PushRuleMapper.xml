@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.boomhope.dao.PushRuleMapper" >
+  <resultMap id="BaseResultMap" type="com.boomhope.po.PushRule" >
+    <id column="RULE_ID" property="ruleId" jdbcType="VARCHAR" />
+    <result column="THRESHOLD" property="threshold" jdbcType="VARCHAR" />
+    <result column="TIME_INTERVAL" property="timeInterval" jdbcType="VARCHAR" />
+    <result column="LOG_SAVE_TIME" property="logSaveTime" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    RULE_ID, THRESHOLD, TIME_INTERVAL, LOG_SAVE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from VIP.PUSH_RULE
+    where RULE_ID = #{ruleId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from VIP.PUSH_RULE
+    where RULE_ID = #{ruleId,jdbcType=VARCHAR}
+  </delete>
+  <!-- 插入sql -->
+  <insert id="insert" parameterType="com.boomhope.po.PushRule" >
+    insert into VIP.PUSH_RULE (RULE_ID, THRESHOLD, TIME_INTERVAL, 
+      LOG_SAVE_TIME)
+    values (#{ruleId,jdbcType=VARCHAR}, #{threshold,jdbcType=VARCHAR}, #{timeInterval,jdbcType=VARCHAR}, 
+      #{logSaveTime,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.boomhope.po.PushRule" >
+    insert into VIP.PUSH_RULE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ruleId != null" >
+        RULE_ID,
+      </if>
+      <if test="threshold != null" >
+        THRESHOLD,
+      </if>
+      <if test="timeInterval != null" >
+        TIME_INTERVAL,
+      </if>
+      <if test="logSaveTime != null" >
+        LOG_SAVE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ruleId != null" >
+        #{ruleId,jdbcType=VARCHAR},
+      </if>
+      <if test="threshold != null" >
+        #{threshold,jdbcType=VARCHAR},
+      </if>
+      <if test="timeInterval != null" >
+        #{timeInterval,jdbcType=VARCHAR},
+      </if>
+      <if test="logSaveTime != null" >
+        #{logSaveTime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.boomhope.po.PushRule" >
+    update VIP.PUSH_RULE
+    <set >
+      <if test="threshold != null" >
+        THRESHOLD = #{threshold,jdbcType=VARCHAR},
+      </if>
+      <if test="timeInterval != null" >
+        TIME_INTERVAL = #{timeInterval,jdbcType=VARCHAR},
+      </if>
+      <if test="logSaveTime != null" >
+        LOG_SAVE_TIME = #{logSaveTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where RULE_ID = #{ruleId,jdbcType=VARCHAR}
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="com.boomhope.po.PushRule" >
+    update VIP.PUSH_RULE
+    set THRESHOLD = #{threshold,jdbcType=VARCHAR},
+      TIME_INTERVAL = #{timeInterval,jdbcType=VARCHAR},
+      LOG_SAVE_TIME = #{logSaveTime,jdbcType=VARCHAR}
+    where RULE_ID = #{ruleId,jdbcType=VARCHAR}
+  </update>
+  
+</mapper>

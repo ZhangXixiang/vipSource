@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.boomhope.dao.VipLogMapper" >
+  <resultMap id="BaseResultMap" type="com.boomhope.po.VipLog" >
+    <id column="FACE_LOG_ID" property="faceLogId" jdbcType="VARCHAR" />
+    <result column="VIP_CUS_ID" property="vipCusId" jdbcType="VARCHAR" />
+    <result column="CUST_NO" property="custNo" jdbcType="VARCHAR" />
+    <result column="SAME_SCORE" property="sameScore" jdbcType="VARCHAR" />
+    <result column="ERROR_CODE" property="errorCode" jdbcType="VARCHAR" />
+    <result column="ERROR_DESC" property="errorDesc" jdbcType="VARCHAR" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="VARCHAR" />
+    <result column="COMPUTE_TIME" property="computeTime" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="SEND_IMG" property="sendImg" jdbcType="VARCHAR" />
+    <result column="RESULT" property="result" jdbcType="VARCHAR" />
+    <result column="UNIT_CODE" property="unitCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    FACE_LOG_ID, VIP_CUS_ID, CUST_NO, SAME_SCORE, ERROR_CODE, ERROR_DESC, CREATE_DATE, UNIT_CODE,
+    COMPUTE_TIME, STATUS,SEND_IMG,RESULT
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from VIP.VIP_LOG
+    where FACE_LOG_ID = #{faceLogId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from VIP.VIP_LOG
+    where FACE_LOG_ID = #{faceLogId,jdbcType=VARCHAR}
+  </delete>
+
+  <insert id="insert" parameterType="com.boomhope.po.VipLog" >
+    insert into VIP.VIP_LOG (FACE_LOG_ID, VIP_CUS_ID, CUST_NO, 
+      SAME_SCORE, ERROR_CODE, ERROR_DESC, 
+      CREATE_DATE, COMPUTE_TIME, STATUS,SEND_IMG,RESULT, UNIT_CODE
+      )
+    values (#{faceLogId,jdbcType=VARCHAR}, #{vipCusId,jdbcType=VARCHAR}, #{custNo,jdbcType=VARCHAR}, 
+      #{sameScore,jdbcType=VARCHAR}, #{errorCode,jdbcType=VARCHAR}, #{errorDesc,jdbcType=VARCHAR}, 
+      #{createDate,jdbcType=VARCHAR}, #{computeTime,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{sendImg,jdbcType=VARCHAR}, #{result,jdbcType=VARCHAR}, #{unitCode,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.boomhope.po.VipLog" >
+    insert into VIP.VIP_LOG
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="faceLogId != null" >
+        FACE_LOG_ID,
+      </if>
+      <if test="vipCusId != null" >
+        VIP_CUS_ID,
+      </if>
+      <if test="custNo != null" >
+        CUST_NO,
+      </if>
+      <if test="sameScore != null" >
+        SAME_SCORE,
+      </if>
+      <if test="errorCode != null" >
+        ERROR_CODE,
+      </if>
+      <if test="errorDesc != null" >
+        ERROR_DESC,
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE,
+      </if>
+      <if test="computeTime != null" >
+        COMPUTE_TIME,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="send_img != null" >
+        SEND_IMG,
+      </if>
+      <if test="result != null" >
+        RESULT,
+      </if>
+      <if test="unitCode != null" >
+        UNIT_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="faceLogId != null" >
+        #{faceLogId,jdbcType=VARCHAR},
+      </if>
+      <if test="vipCusId != null" >
+        #{vipCusId,jdbcType=VARCHAR},
+      </if>
+      <if test="custNo != null" >
+        #{custNo,jdbcType=VARCHAR},
+      </if>
+      <if test="sameScore != null" >
+        #{sameScore,jdbcType=VARCHAR},
+      </if>
+      <if test="errorCode != null" >
+        #{errorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="errorDesc != null" >
+        #{errorDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=VARCHAR},
+      </if>
+      <if test="computeTime != null" >
+        #{computeTime,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{sendImg,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{result,jdbcType=VARCHAR},
+      </if>
+      <if test="unitCode != null" >
+        #{unitCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.boomhope.po.VipLog" >
+    update VIP.VIP_LOG
+    <set >
+      <if test="vipCusId != null" >
+        VIP_CUS_ID = #{vipCusId,jdbcType=VARCHAR},
+      </if>
+      <if test="custNo != null" >
+        CUST_NO = #{custNo,jdbcType=VARCHAR},
+      </if>
+      <if test="sameScore != null" >
+        SAME_SCORE = #{sameScore,jdbcType=VARCHAR},
+      </if>
+      <if test="errorCode != null" >
+        ERROR_CODE = #{errorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="errorDesc != null" >
+        ERROR_DESC = #{errorDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE = #{createDate,jdbcType=VARCHAR},
+      </if>
+      <if test="computeTime != null" >
+        COMPUTE_TIME = #{computeTime,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="sendImg != null" >
+        SEND_IMG = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="result != null" >
+        RESUTL = #{result,jdbcType=VARCHAR},
+      </if>
+      <if test="unitCode != null" >
+        UNIT_CODE= #{result,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where FACE_LOG_ID = #{faceLogId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.boomhope.po.VipLog" >
+    update VIP.VIP_LOG
+    set VIP_CUS_ID = #{vipCusId,jdbcType=VARCHAR},
+      CUST_NO = #{custNo,jdbcType=VARCHAR},
+      SAME_SCORE = #{sameScore,jdbcType=VARCHAR},
+      ERROR_CODE = #{errorCode,jdbcType=VARCHAR},
+      ERROR_DESC = #{errorDesc,jdbcType=VARCHAR},
+      CREATE_DATE = #{createDate,jdbcType=VARCHAR},
+      COMPUTE_TIME = #{computeTime,jdbcType=VARCHAR},
+      SEND_IMG = #{sendImg,jdbcType=VARCHAR},
+      RESULT= #{result,jdbcType=VARCHAR},
+      UNIT_CODE= #{unitCode,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR}
+    where FACE_LOG_ID = #{faceLogId,jdbcType=VARCHAR}
+  </update>
+  
+  <!-- 页面查询的方法 -->
+  	<select id="queryVipLogList" parameterType="java.util.Map" resultType="com.boomhope.po.VipLogExtend">
+select f.face_log_id faceLogId,du.unit_name unitName,v.cust_name custName,f.error_code errorCode,f.error_desc errorDesc,
+	f.same_score sameScore,f.compute_time computeTime, f.create_date createDate,f.status status,f.send_img sendImg,f.result result ,f.cust_no custNo,f.unit_code unitCode
+	from vip_log f,deploy_unit du,vip_customer v
+	<where>
+		du.unit_code = f.unit_code and v.cust_no = f.cust_no
+		<if test="faceLogId != null ">
+			<if test="faceLogId != '' "> and f.FACE_LOG_ID LIKE CONCAT('%', CONCAT(#{faceLogId}, '%'))
+			</if>
+		</if>
+		<if test="errorCode != null">
+			<if test="errorCode != ''"> and f.ERROR_CODE = #{errorCode,jdbcType=VARCHAR}
+			</if>
+		</if>
+		<if test="custNo != null ">
+			<if test="custNo != '' "> and v.CUST_NAME LIKE CONCAT('%', CONCAT(#{custNo}, '%'))
+			</if>
+		</if>
+		<if test="status != null">
+			<if test="status != ''"> and f.status = #{status,jdbcType=VARCHAR}
+			</if>
+		</if>
+	</where>
+</select>
+
+	<!-- 为pad推送消息的查询方法 -->
+<!-- 	<select id="queryVipLogForPadList" parameterType="java.util.Map" resultType="com.boomhope.po.VipLog"> -->
+<!-- 		select cust_no custNo,face_log_id faceLogId,create_date createDate,rn rn from (select cust_no,face_log_id,create_date,ROW_NUMBER() over (partition by cust_no order by create_date) as RN from vip_log where (to_char(sysdate,'YYYYMMDDHH24MISS') ) > create_date -->
+<!-- 		<if test="timeInterval != null"> -->
+<!-- 			<if test="timeInterval != ''"> and #{timeInterval,jdbcType=VARCHAR} > (to_char(sysdate,'YYYYMMDDHH24MISS') - create_date) -->
+<!-- 			</if> -->
+<!-- 		</if> -->
+<!-- 		) where RN = 1 -->
+<!-- 	</select> -->
+
+	<select id="queryVipLogForPadList" parameterType="java.util.Map" resultType="com.boomhope.po.VipLogExtend">
+	select v.cust_sex custSex,v.cust_level custLevel,f.face_log_id faceLogId,du.unit_name unitName,v.cust_name custName,f.error_code errorCode,f.error_desc errorDesc, f.same_score sameScore,f.compute_time computeTime, f.create_date createDate,f.status status,f.send_img sendImg,f.result result ,f.cust_no custNo,f.unit_code unitCode from ( select * from (select t.*,ROW_NUMBER() over (partition by cust_no order by create_date) as RN from vip_log t where (to_char(sysdate,'YYYYMMDDHH24MISS') ) > create_date
+	<if test="timeInterval != null">
+		<if test="timeInterval != ''"> and #{timeInterval,jdbcType=VARCHAR} > (to_char(sysdate,'YYYYMMDDHH24MISS') - create_date)
+		</if>
+	</if>
+	) where RN = 1 ) f,deploy_unit du,vip_customer v where du.unit_code = f.unit_code and v.cust_no = f.cust_no
+</select>
+
+
+
+
+
+
+
+
+
+  <!-- 根据时间删除:这里将14位的日期相减除以1000000，如果大于1则表示大于一天-->
+  <delete id="deleteByLogSaveTime" parameterType="java.lang.String" >
+    delete from vip_log where (to_char(sysdate,'YYYYMMDDHH24MISS') - create_date)/1000000 > #{logSaveTime,jdbcType=VARCHAR}
+  </delete>
+</mapper>

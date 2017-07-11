@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.boomhope.dao.VipCustomerMapper">
+	<resultMap id="BaseResultMap" type="com.boomhope.po.VipCustomer">
+		<id column="VIP_CUS_ID" property="vipCusId" jdbcType="VARCHAR"/>
+		<result column="CUST_NO" property="custNo" jdbcType="VARCHAR"/>
+		<result column="CUST_NAME" property="custName" jdbcType="VARCHAR"/>
+		<result column="CUST_SEX" property="custSex" jdbcType="VARCHAR"/>
+		<result column="CREDIT_TYPE" property="creditType" jdbcType="VARCHAR"/>
+		<result column="CREDIT_NO" property="creditNo" jdbcType="VARCHAR"/>
+		<result column="CREATE_DATE" property="createDate" jdbcType="VARCHAR"/>
+		<result column="CUST_LEVEL" property="custLevel" jdbcType="VARCHAR"/>
+		<result column="CUST_BIR" property="custBir" jdbcType="VARCHAR"/>
+	</resultMap>
+	<sql id="Base_Column_List"> VIP_CUS_ID, CUST_NO, CUST_NAME, CUST_SEX, CREDIT_TYPE, CREDIT_NO, CREATE_DATE, CUST_LEVEL, CUST_BIR
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List"/>
+		from VIP.VIP_CUSTOMER where VIP_CUS_ID = #{vipCusId,jdbcType=VARCHAR}
+	</select>
+	<select id="selectByCustNoList" parameterType="java.util.Map" resultMap="BaseResultMap">
+		select VIP_CUS_ID, CUST_NAME, CUST_SEX, CUST_LEVEL,CREDIT_NO,CREATE_DATE,CREDIT_TYPE, CUST_NO,CUST_BIR from VIP.VIP_CUSTOMER
+		<where>
+			<if test="custNo != null"> and CUST_NO=#{custNo,jdbcType=VARCHAR}
+			</if>
+		</where>
+	</select>
+	<!-- 这里这个方法在客户管理页面的查询和摄像机调用接口保存比对接口中根据生物认证平台返回的userId（custNo）判断是否是vip用户公用 -->
+	<select id="findVipCustomerList" parameterType="java.util.Map" resultMap="BaseResultMap">
+		select VIP_CUS_ID, CUST_NAME, CUST_SEX, CUST_LEVEL,CREDIT_NO,CREATE_DATE,CREDIT_TYPE, CUST_NO,CUST_BIR from VIP.VIP_CUSTOMER
+		<where>
+			<if test="custName != null">
+				<if test="custName != ''"> CUST_NAME LIKE CONCAT('%',CONCAT(#{custName},'%'))
+				</if>
+			</if>
+			<if test="creditNo != null">
+				<if test="creditNo != ''"> and CREDIT_NO LIKE CONCAT('%',CONCAT(#{creditNo},'%'))
+				</if>
+			</if>
+			<if test="custNo != null">
+				<if test="custNo != ''"> and CUST_NO = #{custNo,jdbcType=VARCHAR}
+				</if>
+			</if>
+		</where>
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String"> delete from VIP.VIP_CUSTOMER where VIP_CUS_ID = #{vipCusId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.boomhope.po.VipCustomer"> insert into VIP.VIP_CUSTOMER (VIP_CUS_ID, CUST_NO, CUST_NAME, CUST_SEX, CREDIT_TYPE, CREDIT_NO, CREATE_DATE, CUST_LEVEL, CUST_BIR ) values (#{vipCusId,jdbcType=VARCHAR}, #{custNo,jdbcType=VARCHAR}, #{custName,jdbcType=VARCHAR}, #{custSex,jdbcType=VARCHAR}, #{creditType,jdbcType=VARCHAR}, #{creditNo,jdbcType=VARCHAR}, #{createDate,jdbcType=VARCHAR}, #{custLevel,jdbcType=VARCHAR},#{custBir,jdbcType=VARCHAR} )
+	</insert>
+	<insert id="insertSelective" parameterType="com.boomhope.po.VipCustomer">
+		insert into VIP.VIP_CUSTOMER
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="vipCusId != null"> VIP_CUS_ID,
+			</if>
+			<if test="custNo != null"> CUST_NO,
+			</if>
+			<if test="custName != null"> CUST_NAME,
+			</if>
+			<if test="custSex != null"> CUST_SEX,
+			</if>
+			<if test="creditType != null"> CREDIT_TYPE,
+			</if>
+			<if test="creditNo != null"> CREDIT_NO,
+			</if>
+			<if test="createDate != null"> CREATE_DATE,
+			</if>
+			<if test="custLevel != null"> CUST_LEVEL,
+			</if>
+			<if test="custBir != null"> CUST_BIR,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="vipCusId != null"> #{vipCusId,jdbcType=VARCHAR},
+			</if>
+			<if test="custNo != null"> #{custNo,jdbcType=VARCHAR},
+			</if>
+			<if test="custName != null"> #{custName,jdbcType=VARCHAR},
+			</if>
+			<if test="custSex != null"> #{custSex,jdbcType=VARCHAR},
+			</if>
+			<if test="creditType != null"> #{creditType,jdbcType=VARCHAR},
+			</if>
+			<if test="creditNo != null"> #{creditNo,jdbcType=VARCHAR},
+			</if>
+			<if test="createDate != null"> #{createDate,jdbcType=VARCHAR},
+			</if>
+			<if test="custLevel != null"> #{custLevel,jdbcType=VARCHAR},
+			</if>
+			<if test="custBir != null"> #{custBir,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateVipCustomerVo" parameterType="com.boomhope.po.VipCustomer">
+		update VIP.VIP_CUSTOMER
+		<set>
+			<if test="custNo != null"> CUST_NO = #{custNo,jdbcType=VARCHAR},
+			</if>
+			<if test="custName != null"> CUST_NAME = #{custName,jdbcType=VARCHAR},
+			</if>
+			<if test="custSex != null"> CUST_SEX = #{custSex,jdbcType=VARCHAR},
+			</if>
+			<if test="creditType != null"> CREDIT_TYPE = #{creditType,jdbcType=VARCHAR},
+			</if>
+			<if test="creditNo != null"> CREDIT_NO = #{creditNo,jdbcType=VARCHAR},
+			</if>
+			<if test="createDate != null"> CREATE_DATE = #{createDate,jdbcType=VARCHAR},
+			</if>
+			<if test="custLevel != null"> CUST_LEVEL = #{custLevel,jdbcType=VARCHAR},
+			</if>
+			<if test="custBir != null"> CUST_BIR = #{custBir,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where VIP_CUS_ID = #{vipCusId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.boomhope.po.VipCustomer"> 
+	update VIP.VIP_CUSTOMER set CUST_NO = #{custNo,jdbcType=VARCHAR}, 
+	CUST_NAME = #{custName,jdbcType=VARCHAR}, CUST_SEX = #{custSex,jdbcType=VARCHAR}, 
+	CREDIT_TYPE = #{creditType,jdbcType=VARCHAR}, CREDIT_NO = #{creditNo,jdbcType=VARCHAR}, 
+	CREATE_DATE = #{createDate,jdbcType=VARCHAR}, CUST_LEVEL = #{custLevel,jdbcType=VARCHAR}, 
+	CUST_BIR = #{custBir,jdbcType=VARCHAR} where VIP_CUS_ID = #{vipCusId,jdbcType=VARCHAR}
+	</update>
+	<delete id="deleteCustlist" parameterType="java.util.List">
+		<!-- WARNING - @mbg.generated This element is automatically generated by MyBatis Generator, do not modify. -->
+		delete from VIP_CUSTOMER
+		<where>
+			CUST_NO in
+			<foreach collection="list" item="item" index="index" open="(" separator="," close=")">#{item}
+			</foreach>
+		</where>
+	</delete>
+	<insert id="importInsert" parameterType="list">
+	
+    insert into VIP.VIP_CUSTOMER (VIP_CUS_ID, CUST_NO, CUST_NAME, CUST_SEX,
+		CREDIT_TYPE, CREDIT_NO, CREATE_DATE, CUST_LEVEL, CUST_BIR)
+		select seq_vipcustomer.Nextval,cd.* from(
+    <foreach collection="list" item="item" separator="UNION ALL">
+	SELECT
+	#{item.custNo,jdbcType=VARCHAR}, #{item.custName,jdbcType=VARCHAR},
+	#{item.custSex,jdbcType=VARCHAR},#{item.creditType,jdbcType=VARCHAR},
+	#{item.creditNo,jdbcType=VARCHAR},#{item.createDate,jdbcType=VARCHAR},
+	#{item.custLevel,jdbcType=VARCHAR},#{item.custBir,jdbcType=VARCHAR} from dual
+	</foreach>
+	)cd
+  </insert>
+</mapper>

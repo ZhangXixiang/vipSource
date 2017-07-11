@@ -1,0 +1,97 @@
+body,div,p,h1,h2,h3,h4,input,select,ul,li,ol,table,dt,tr,td,textarea,a,span,form{margin: 0;padding: 0;}
+html,body{font-family:'Microsoft YaHei';box-sizing: border-box;}
+a,a:hover{text-decoration: none;}
+table { border-collapse: collapse; border-spacing: 0; }
+address, caption, cite, code, dfn, em, strong, th, var { font-style: normal; font-weight: normal; }
+ol, ul { list-style: none; }
+ul,li{list-style: none;}
+a,img{border: none;}
+label{font-weight: normal;}
+/*閹兼粎鍌ㄩ弶鈥叉閺嶅嘲绱*/
+.contentHeader .marginTopJL{margin-top: 20px;}
+.marginTopJL .disBlockVerTop{vertical-align: top;margin: 8px 0 0 0;}
+#contentRight{position: relative;}
+.PaddIngMargin{height: 100%;}
+.fixed-table-pagination .pagination-info{line-height: 30px;font-size: 14px;margin-left: 10px;}
+.fixed-table-pagination .page-list{line-height: 30px;}
+.btn-group .btn{padding: 2px 6px;}
+/*闁插秶鐤嗗鍡樼仸閺嶅嘲绱*/
+.container,.row{width: 100%;padding: 0;margin:0;font-size: 14px;position: relative;}
+.PaddIngMargin{padding: 0;}
+.marginBtm{margin-bottom:10px;}
+.PaddIngLeft{padding-right: 0;}
+.PaddIngRight{padding-left: 10px;}
+.IcoImg{font-size: 16px;color: #fff;margin: 0 10px;cursor: pointer;}
+
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{border-bottom: 1px solid #ddd;}
+.fixed-table-pagination .page-list{float: left;}
+.pagination{margin: 0;}
+/*閸忣剙鍙″鍦崶閺嶅嘲绱*/
+.addMymodal{width:663px;top:100px;margin: 10px 0;}
+.textWidth{display: inline-block;width: 85px;font-size: 14px;vertical-align: middle;}
+.LineHeightText{margin-top: -24px;}
+.BtnTop{margin-top:-17px;width: 76px;}
+.item{display:inline-block;margin-right:4px;font-size: 14px; color: red;}
+.form-group{margin-bottom: 0;}
+.aMarGIn{margin:0 6px;display: inline-block;}
+/*部署维护左侧树形菜单样式*/
+.lft_tree{margin-top:10px;padding-left:0;}
+.lft_tree input{display:inline-block;width:65%;}
+/*閸掔娀娅庡鍦崶*/
+.delecMymodal{width:320px;height:170px;top:200px;margin: 10px 0;left: 24%;}
+.modalButtom{height: 40px;background: #e5e5e5;margin-top: 46px;border-radius: 4px;}
+.pupInfor{margin-top: 26px;}
+.icoIfor{color: yellow;display: inline-block;margin-right: 6px;}
+/*瀹革缚鏅堕懣婊冨礋閺嶅嘲绱*/
+.list .leftMenu li{color: #333333;font-size: 14px;padding-left: 20px;position: relative;cursor: pointer;}
+.list .leftMenu li span{display: inline-block;width: 26px;height: 20px;margin-right: 6px;background-image: url(../../images/common/cssFairy.png);vertical-align: top; margin-top: 9px;background-position-y:0;background-position-x:0;}
+.list .leftMenu li:hover{background: #1075bb;color: #fff;}
+.list .leftMenu .liActive{background: #1075bb;color: #fff;}
+/*娑擃亙姹夋穱鈩冧紖瀵懓鍤粣妤佺壉瀵拷 */
+.geRenInformation{width:222px;height:230px;border-radius:6px;background:#fff;z-index:20;position:absolute;left:-247px;border:1px solid #ccc;top:-7px;display:none;}
+.InfoTopBak{widht:100%;height:45px;position: relative;background:#ff6600;border-radius:6px 6px 0 0;}
+.rightOut .dropdown-menu>li .InfoTopBak p{color:#fff;font-size:14px;margin-right:35px;font-style:normal;line-height:45px;}
+.rightOut .dropdown-menu>li .InfoTopBak i{font-style:normal;}
+.InfoTopBak .InfoImg{width:46px;height:46px;position:absolute;left:39px;top:14px;border-radius:23px;}
+.inforRightPng{position:absolute;right:-11px;top:10px;width:12px;height:22px;background:url(../../images/common/inforRight.png) no-repeat;}
+.InfoButtomContent{margin-top:20px;}
+.InfoButtomContent{padding:0 10px;}
+.dengLuCiShu{padding:0;width: 94px;}
+.dengLuCiShu1{width:76px;padding:0;}
+.geRenLianXiFS{padding:0 10px 9px 10px;float:left;border-bottom:1px solid #ccc;}
+.colorCCC{color:#ccc;}
+.color000{color:#000;}
+
+
+
+/**
+* 濡剝瀚檚elect
+**/		
+.select-box { position: relative; }
+.select-city .select-header {border: 1px solid #c1c1c1;background: url(../../images/common/arrow.png) no-repeat #f9f9f9; background-position: 148px 14px; line-height: 32px; text-indent: 14px; font-size: 14px; color: #a9a9a9; cursor: pointer; overflow: hidden;border-radius: 4px; }
+.select-city .select-arrow { background-position: 148px -14px; }
+.select-city .select-content { border-left: 1px solid #c1c1c1; border-right: 1px solid #c1c1c1; position: absolute; top: 36px; left: 0; z-index: 99; display: none; background-color: #f9f9f9; width: 175px;max-height: 170px;overflow: auto;}
+.select-city .select-content li {height: 32px; margin: 0; border-bottom: 1px solid #c1c1c1; line-height: 32px; text-indent: 14px; background-color: #f9f9f9; font-size: 14px; color: #a9a9a9; cursor: pointer; }
+.select-bank .select-header { width: 272px; height: 36px; border: 1px solid #c1c1c1; padding-right: 26px; background: url(../../images/common/arrow.png) no-repeat #f9f9f9; background-position: 279px 15px; line-height: 36px; text-indent: 14px; font-size: 16px; color: #a9a9a9; cursor: pointer; overflow: hidden; }
+.select-bank .select-arrow { background-position: 279px -9px; }
+.select-bank .select-content { border-left: 1px solid #c1c1c1; border-right: 1px solid #c1c1c1; position: absolute; top: 38px; left: 0; z-index: 99; display: none; background-color: #f9f9f9; }
+.select-bank .select-content li { width: 298px; height: 36px; margin: 0; border-bottom: 1px solid #c1c1c1; line-height: 36px; text-indent: 14px; background-color: #f9f9f9; font-size: 16px; color: #a9a9a9; cursor: pointer; }		
+/*闁插秶鐤哹ootstarp閺嶅嘲绱*/	
+.btn-primary{background: #0a9cdd;border-color:#0a9cdd;}
+.btn-primary:hover{background: #0a9cdd;border-color:#0a9cdd;}
+.rightOut .dropdown-menu{left: -82px;top:76%;background: #1075bb;border-color:#1075bb;padding: 6px 12px;}
+.rightOut .dropdown-menu>li{position: relative;line-height: 30px;}
+.rightOut .dropdown-menu>li>a{color: #fff;display: inline-block;padding:0;}
+.rightOut .dropdown-menu>li>a:hover{background: #1075bb;color: #fff;}
+.rightOut .dropdown-menu>li span{display: inline-block;width: 18px;height: 18px;background-image: url(../../images/common/CSS_Wizard.png);background-position-y: -6px;vertical-align: top;margin: 6px 4px 0 0;}
+.rightOut .dropdown-menu .geRenXinXi{background-position-x: -226px;}
+.rightOut .dropdown-menu .sheZhiZhongXin{background-position-x: -203px;}
+.rightOut .dropdown-menu .zhuXiaoDengLu{background-position-x: -273px;}
+.rightOut .dropdown-menu .tuiChu{background-position-x: -296px;}
+
+
+/*閻楀牊娼堥弽宄扮础*/
+.copyright{width: 100%;font-size: 14px;font-weight: 500;color: #000;position: absolute;bottom: 0px;background:#92a9ff;line-height:30px;}
+/*闁插秶鐤哯tree閺嶅嘲绱� */
+.ztree li span.button{line-height: inherit;padding-left: 14px;}
+
